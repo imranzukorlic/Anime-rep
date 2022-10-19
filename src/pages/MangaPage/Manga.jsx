@@ -39,7 +39,6 @@ function Manga() {
         `https://kitsu.io/api/edge/manga?&page[limit]=20&page[offset]=${pomeraj}`
       );
     } else {
-
       if (naziv.length !== 0 && kategorija.length === 0) {
         res = await fetch(
           `https://kitsu.io/api/edge/manga?filter[text]=${naziv}&page[limit]=20&page[offset]=${pomeraj}`
@@ -66,19 +65,20 @@ function Manga() {
   useEffect(() => {
     if (state) {
       setCategory(state.category);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       kategorija = state.category;
     }
-    window.scrollTo({top: 0});
+    window.scrollTo({ top: 0 });
     getManga();
   }, []);
 
   useEffect(() => {
-      promena === true ? setHasMore(true) : setHasMore(false);
+    promena === true ? setHasMore(true) : setHasMore(false);
   }, [promena]);
 
   useEffect(() => {
     setOffset(offset + 20);
-  }, [manga]);
+  }, [manga, offset]);
 
   pomeraj = offset;
   naziv = value;
@@ -168,7 +168,7 @@ function Manga() {
           </p>
         }
       >
-        <ToTop/>
+        <ToTop />
         <div className="flex flex-wrap gap-8 justify-center bg-dark py-10">
           {manga.map((manga) => (
             <div
