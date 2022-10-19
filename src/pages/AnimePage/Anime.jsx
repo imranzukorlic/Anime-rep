@@ -6,7 +6,6 @@ import Loader from "../../components/scroll/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ToTop from "../../components/ToTop/ToTop";
 
-
 const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
@@ -67,21 +66,20 @@ function Anime() {
   useEffect(() => {
     if (state) {
       setCategory(state.category);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       kategorija = state.category;
     }
-    window.scrollTo({top: 0});
+    window.scrollTo({ top: 0 });
     getAnimes();
   }, []);
 
   useEffect(() => {
     setOffset(offset + 20);
-  }, [animes]);
+  }, [animes, offset]);
 
   useEffect(() => {
-      promena === true ? setHasMore(true) : setHasMore(false);
+    promena === true ? setHasMore(true) : setHasMore(false);
   }, [promena]);
-
-  
 
   pomeraj = offset;
   naziv = value;
@@ -172,7 +170,7 @@ function Anime() {
         }
       >
         <div className="flex flex-wrap gap-8 justify-center bg-dark py-10 z-1">
-            <ToTop/>
+          <ToTop />
           {animes.map((anime) => (
             <div
               key={anime.id}
@@ -190,8 +188,7 @@ function Anime() {
                 });
               }}
             >
-              <div>
-              </div>
+              <div></div>
               <AnimeCard
                 image={anime.attributes.posterImage.small}
                 title={anime.attributes.canonicalTitle}
